@@ -1,37 +1,46 @@
 package animal;
 
-public class Animal {
-    
-    public int age;
+public abstract class Animal {
+    private int age;
 
     public Animal(int age) {
         this.age = age;
         System.out.println("An animal has been created");
     }
     
-    public void eat() {
-        System.out.println("An animal is eating");
+    public abstract void eat();
+    
+    public void sleep() {
+        System.out.println("An animal is sleeping.");
     }
     
+    public int getAge() {
+        return age;
+    }
     
     public static void main(String[] args) {
-        Animal a = new Animal(5);
         Dog d = new Dog();
         Cat c = new Cat();
-        d.ruff();
-        c.meow();
-        a.eat();
         d.eat();
         c.eat();
-        d.run();
-        c.prance();
+        d.sleep();
+        c.sleep();
         
-        //What happens if...
-        //Animal o = new Dog();
+        // Casting
+        Object dog = new Dog();
+        Dog realDog = (Dog) dog;
+        realDog.ruff();
+        realDog.eat();
         
-        System.out.println(d.age);
-        System.out.println(c.age);
-       
+        Object str = "est";
+        String realS = (String) str;
+        
+        // What happens when...
+        Dog doggy = new Dog();
+        if (d instanceof Animal) {
+            Animal animal = (Animal) doggy;
+            animal.sleep();
+        }
+        doggy.sleep();
     }
-    
 }
